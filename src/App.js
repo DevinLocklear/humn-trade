@@ -1,24 +1,45 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { supabase } from './supabase';
+import Landing from './pages/Landing';
+import Auth from './pages/Auth';
+import Dashboard from './pages/Dashboard';
+import Listings from './pages/Listings';
+import Profile from './pages/Profile';
+import Trades from './pages/Trades';
 import './App.css';
 
+function PrivateRoute({ children, session, loading }) {
+  if (loading) return <div className="page-loading"><div className="spinner" /></div>;
+  return session ? children : <Navigate to="/auth" />;
+}
+
 function App() {
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing session={session} />} />
+        <Route path="/auth" element={session ? <Navigate to="/dashboard" /> : <Auth />} />
+        <Route path="/dashboard" element={<PrivateRoute session={session} loading={loading}><Dashboard session={session} /></PrivateRoute>} />
+        <Route path="/listings" element={<PrivateRoute session={session} loading={loading}><Listings session={session} /></PrivateRoute>} />
+        <Route path="/trades" element={<PrivateRoute session={session} loading={loading}><Trades session={session} /></PrivateRoute>} />
+        <Route path="/profile/:id" element={<PrivateRoute session={session} loading={loading}><Profile session={session} /></PrivateRoute>} />
+      </Routes>
+    </Router>
   );
 }
 

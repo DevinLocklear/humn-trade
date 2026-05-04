@@ -1,0 +1,41 @@
+.trades-page { display: flex; min-height: 100vh; background: var(--bg); }
+.trades-main { margin-left: 240px; flex: 1; padding: 48px 64px; display: flex; flex-direction: column; gap: 32px; }
+.trades-header { display: flex; align-items: center; justify-content: space-between; }
+.trades-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 0.02em; }
+.trades-sub { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+.trades-filters { display: flex; gap: 2px; flex-wrap: wrap; }
+.trades-loading { display: flex; align-items: center; justify-content: center; padding: 100px; }
+.trades-empty { background: var(--bg-card); border: 1px solid var(--border); padding: 80px 40px; text-align: center; color: var(--text-muted); }
+.trades-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+
+.trade-card { background: var(--bg-card); padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; transition: background 0.15s; }
+.trade-card:hover { background: var(--bg-elevated); }
+
+.trade-card-header { display: flex; align-items: center; justify-content: space-between; }
+.trade-id { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-muted); }
+
+.trade-parties { display: flex; align-items: center; gap: 24px; }
+.trade-party { display: flex; flex-direction: column; gap: 4px; }
+.trade-party-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.trade-party-role { font-size: 14px; font-weight: 600; }
+.trade-party-name { font-size: 14px; font-weight: 600; color: var(--green); cursor: pointer; }
+.trade-party-name:hover { text-decoration: underline; }
+.trade-vs { font-size: 20px; color: var(--text-dim); }
+
+.trade-value { font-size: 14px; color: var(--text-muted); }
+.trade-value span { color: var(--green); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+.trade-fee { color: var(--text-dim); font-size: 12px; }
+
+.trade-notes { font-size: 13px; color: var(--text-muted); background: var(--bg-elevated); padding: 10px 14px; border-left: 2px solid var(--border-light); }
+
+.trade-confirmation { display: flex; gap: 16px; }
+.confirm-dot { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); }
+.confirm-dot.confirmed { color: var(--green); }
+
+.trade-date { font-size: 12px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
+.trade-actions { display: flex; gap: 12px; }
+
+@media (max-width: 768px) {
+  .trades-main { margin-left: 0; padding: 20px 16px; }
+}

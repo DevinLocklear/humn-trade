@@ -1,38 +1,167 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #060608;
+  --bg-card: #0e0e12;
+  --bg-elevated: #16161c;
+  --border: #1e1e28;
+  --border-light: #2a2a38;
+
+  --green: #00e676;
+  --green-dim: rgba(0, 230, 118, 0.08);
+  --green-mid: rgba(0, 230, 118, 0.25);
+  --red: #ff4444;
+  --gold: #ffd700;
+  --blue: #4488ff;
+
+  --accent: #00e676;
+  --prism: linear-gradient(135deg, #00e676, #00b4d8, #7b2fff);
+
+  --text: #eeeef5;
+  --text-muted: #5a5a7a;
+  --text-dim: #2a2a3a;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.App-header {
-  background-color: #282c34;
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: 'Outfit', sans-serif; }
+input, textarea, select { font-family: 'Outfit', sans-serif; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+
+/* Buttons */
+.btn-primary {
+  background: var(--green);
+  color: #000;
+  border: none;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.btn-primary:hover { background: #00ff88; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,230,118,0.3); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-light);
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+.btn-danger {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.btn-danger:hover { background: rgba(255,68,68,0.1); }
+
+/* Fields */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.field-input {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  color: var(--text);
+  padding: 12px 16px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  border-radius: 2px;
+}
+.field-input:focus { border-color: var(--green); }
+.field-input::placeholder { color: var(--text-dim); }
+
+select.field-input { appearance: none; }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid var(--green-mid);
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 2px;
+}
+
+.tag-gold {
+  background: rgba(255,215,0,0.08);
+  color: var(--gold);
+  border-color: rgba(255,215,0,0.25);
+}
+
+.tag-blue {
+  background: rgba(68,136,255,0.08);
+  color: var(--blue);
+  border-color: rgba(68,136,255,0.25);
+}
+
+.tag-red {
+  background: rgba(255,68,68,0.08);
+  color: var(--red);
+  border-color: rgba(255,68,68,0.25);
+}
+
+/* Page loading */
+.page-loading {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: var(--bg);
 }
 
-.App-link {
-  color: #61dafb;
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Mono */
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* Trust score colors */
+.trust-high { color: var(--green); }
+.trust-mid { color: var(--gold); }
+.trust-low { color: var(--red); }
