@@ -18,7 +18,6 @@ export default function Listings({ session }) {
   const [offerForm, setOfferForm] = useState({ inventory_id: '', message: '' });
   const [sendingOffer, setSendingOffer] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [createType, setCreateType] = useState('want');
   const [form, setForm] = useState({
     type: 'want', item_type: 'card', item_name: '', set_name: '',
     condition: 'Raw', quantity: 1, estimated_value: '', notes: '', accepting_offers: true,
@@ -134,8 +133,8 @@ export default function Listings({ session }) {
             <p className="listings-sub">{displayed.length} {tab === 'want' ? 'trade requests' : 'inventory items'}</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button className="btn-ghost" onClick={() => { setCreateType('have'); setForm(f => ({...f, type: 'have'})); setShowCreate(true); }}>+ Add to Inventory</button>
-            <button className="btn-primary" onClick={() => { setCreateType('want'); setForm(f => ({...f, type: 'want'})); setShowCreate(true); }}>+ Post Trade Request</button>
+            <button className="btn-ghost" onClick={() => { setForm(f => ({...f, type: 'have'})); setShowCreate(true); }}>+ Add to Inventory</button>
+            <button className="btn-primary" onClick={() => { setForm(f => ({...f, type: 'want'})); setShowCreate(true); }}>+ Post Trade Request</button>
           </div>
         </div>
 
@@ -253,7 +252,7 @@ export default function Listings({ session }) {
                 ) : (
                   <div className="offer-no-inventory">
                     <p>You have no inventory items yet.</p>
-                    <button type="button" className="btn-ghost" style={{ fontSize: 13, marginTop: 8 }} onClick={() => { setOfferModal(null); setCreateType('have'); setForm(f => ({...f, type: 'have'})); setShowCreate(true); }}>+ Add to Inventory First</button>
+                    <button type="button" className="btn-ghost" style={{ fontSize: 13, marginTop: 8 }} onClick={() => { setOfferModal(null); setForm(f => ({...f, type: 'have'})); setShowCreate(true); }}>+ Add to Inventory First</button>
                   </div>
                 )}
                 <div className="field">
