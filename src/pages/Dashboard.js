@@ -48,6 +48,7 @@ export default function Dashboard({ session }) {
 
   const navItems = [
     { icon: '◈', label: 'Dashboard', path: '/dashboard', active: true },
+    { icon: '🃏', label: 'Browse Sets', path: '/sets' },
     { icon: '▣', label: 'Browse Trades', path: '/listings' },
     { icon: '◎', label: 'My Trades', path: '/trades' },
     { icon: '◐', label: 'My Profile', path: `/profile/${session?.user?.id}` },
