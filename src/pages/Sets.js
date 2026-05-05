@@ -60,7 +60,6 @@ export default function Sets({ session }) {
   function clearSet() {
     setSelectedSet(null);
     setAllListings([]);
-    setSetListings([]);
     setSearchParams({});
   }
 
