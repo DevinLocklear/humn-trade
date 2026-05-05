@@ -10,7 +10,6 @@ export default function Sets({ session }) {
 
   const [sets, setSets] = useState([]);
   const [selectedSet, setSelectedSet] = useState(null);
-  const [setListings, setSetListings] = useState([]);
   const [allListings, setAllListings] = useState([]);
   const [loadingSets, setLoadingSets] = useState(true);
   const [loadingListings, setLoadingListings] = useState(false);
@@ -55,8 +54,7 @@ export default function Sets({ session }) {
       .ilike('set_name', `%${set.name}%`)
       .order('created_at', { ascending: false });
     setAllListings(data || []);
-    setSetListings(data || []);
-    setLoadingListings(false);
+      setLoadingListings(false);
   }
 
   function clearSet() {
