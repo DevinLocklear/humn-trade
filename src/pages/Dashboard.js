@@ -50,6 +50,7 @@ export default function Dashboard({ session }) {
     { icon: '◈', label: 'Dashboard', path: '/dashboard', active: true },
     { icon: '🃏', label: 'Browse Sets', path: '/sets' },
     { icon: '▣', label: 'Browse Trades', path: '/listings' },
+    { icon: '⚡', label: 'Activity', path: '/activity' },
     { icon: '◎', label: 'My Trades', path: '/trades' },
     { icon: '◐', label: 'My Profile', path: `/profile/${session?.user?.id}` },
   ];
@@ -149,6 +150,31 @@ export default function Dashboard({ session }) {
               <div className="dash-action-desc">View your trust score and trade history</div>
               <div className="dash-action-arrow">→</div>
             </div>
+          </div>
+        </div>
+
+        {/* Trending Sets */}
+        <div className="dash-section">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="dash-section-label">Trending Sets</div>
+            <button className="btn-ghost" onClick={() => navigate('/sets')} style={{ fontSize: 12, padding: '6px 12px' }}>View All</button>
+          </div>
+          <div className="dash-trending-sets">
+            {[
+              { name: 'Prismatic Evolutions', series: 'Scarlet & Violet', emoji: '✨' },
+              { name: 'Surging Sparks', series: 'Scarlet & Violet', emoji: '⚡' },
+              { name: 'Stellar Crown', series: 'Scarlet & Violet', emoji: '👑' },
+              { name: 'Twilight Masquerade', series: 'Scarlet & Violet', emoji: '🎭' },
+            ].map((set, i) => (
+              <div key={i} className="dash-trending-set" onClick={() => navigate('/sets')}>
+                <div className="dash-trending-set-emoji">{set.emoji}</div>
+                <div>
+                  <div className="dash-trending-set-name">{set.name}</div>
+                  <div className="dash-trending-set-series">{set.series}</div>
+                </div>
+                <div className="dash-trending-set-arrow">→</div>
+              </div>
+            ))}
           </div>
         </div>
 

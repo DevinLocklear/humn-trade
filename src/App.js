@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Listings from './pages/Listings';
 import Profile from './pages/Profile';
 import Sets from './pages/Sets';
+import Activity from './pages/Activity';
 import Trades from './pages/Trades';
 import './App.css';
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/trades" element={<PrivateRoute session={session} loading={loading}><Trades session={session} /></PrivateRoute>} />
         <Route path="/profile/:id" element={<PrivateRoute session={session} loading={loading}><Profile session={session} /></PrivateRoute>} />
         <Route path="/sets" element={<PrivateRoute session={session} loading={loading}><Sets session={session} /></PrivateRoute>} />
+        <Route path="/activity" element={<PrivateRoute session={session} loading={loading}><Activity session={session} /></PrivateRoute>} />
       </Routes>
     </Router>
   );

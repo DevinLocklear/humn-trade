@@ -53,3 +53,6 @@
   .profile-listings { grid-template-columns: 1fr; }
   .profile-name-row { flex-wrap: wrap; }
 }
+
+/* Verified badge */
+.verified-badge-large { display: inline-flex; align-items: center; gap: 5px; background: var(--accent); color: #fff; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.01em; }

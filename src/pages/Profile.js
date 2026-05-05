@@ -103,6 +103,11 @@ export default function Profile({ session }) {
             ) : (
               <div className="profile-name-row">
                 <h1 className="profile-name">{profile?.username || 'Unnamed Trader'}</h1>
+                {profile?.trades_completed >= 5 && profile?.trust_score >= 80 && (
+                  <div className="verified-badge-large" title="Verified Trader — 5+ completed trades, trust score 80+">
+                    ✓ Verified
+                  </div>
+                )}
                 {isOwn && <button className="btn-ghost" onClick={() => setEditing(true)} style={{ fontSize: 12, padding: '6px 16px' }}>Edit</button>}
               </div>
             )}

@@ -50,3 +50,12 @@
   .dash-list-item { flex-wrap: wrap; gap: 8px; }
   .dash-list-meta { display: none; }
 }
+
+/* Trending sets */
+.dash-trending-sets { display: flex; flex-direction: column; gap: 6px; }
+.dash-trending-set { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: all 0.1s; box-shadow: var(--shadow-sm); }
+.dash-trending-set:hover { border-color: var(--border-strong); box-shadow: var(--shadow-md); }
+.dash-trending-set-emoji { font-size: 22px; width: 36px; height: 36px; background: var(--bg-secondary); border-radius: 9px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); flex-shrink: 0; }
+.dash-trending-set-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+.dash-trending-set-series { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+.dash-trending-set-arrow { margin-left: auto; color: var(--accent); font-size: 14px; font-weight: 600; }
