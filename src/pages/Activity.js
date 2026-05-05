@@ -112,6 +112,7 @@ export default function Activity({ session }) {
     if (item._type === 'listing') {
       const user = item.profiles?.username || 'Trader';
       const isVerified = (item.profiles?.trust_score || 0) >= 80;
+      const action = item.type === 'have' ? 'is offering' : 'is looking for';
       return (
         <div key={item.id} className="activity-item">
           <div className="activity-icon listing-icon">📋</div>
@@ -119,9 +120,9 @@ export default function Activity({ session }) {
             <div className="activity-text">
               <span className="activity-user" onClick={() => navigate(`/profile/${item.user_id}`)}>{user}</span>
               {isVerified && <span className="verified-badge">✓</span>}
-              {' listed '}
+              {` ${action} `}
               <span className="activity-card">{item.item_name}</span>
-              {item.set_name && <span className="activity-set"> from {item.set_name}</span>}
+              {item.set_name && <span className="activity-set"> · {item.set_name}</span>}
               {item.estimated_value && <span className="activity-value"> · ${item.estimated_value}</span>}
             </div>
             <div className="activity-meta">

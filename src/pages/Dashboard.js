@@ -157,16 +157,16 @@ export default function Dashboard({ session }) {
         <div className="dash-section">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div className="dash-section-label">Trending Sets</div>
-            <button className="btn-ghost" onClick={() => navigate('/sets')} style={{ fontSize: 12, padding: '6px 12px' }}>View All</button>
+            <button className="btn-ghost" onClick={() => navigate('/sets')} style={{ fontSize: 12, padding: '6px 12px' }}>View All →</button>
           </div>
           <div className="dash-trending-sets">
             {[
-              { name: 'Prismatic Evolutions', series: 'Scarlet & Violet', emoji: '✨' },
-              { name: 'Surging Sparks', series: 'Scarlet & Violet', emoji: '⚡' },
-              { name: 'Stellar Crown', series: 'Scarlet & Violet', emoji: '👑' },
-              { name: 'Twilight Masquerade', series: 'Scarlet & Violet', emoji: '🎭' },
+              { name: 'Prismatic Evolutions', series: 'Scarlet & Violet', emoji: '✨', id: 'sv8pt5' },
+              { name: 'Surging Sparks', series: 'Scarlet & Violet', emoji: '⚡', id: 'sv8' },
+              { name: 'Stellar Crown', series: 'Scarlet & Violet', emoji: '👑', id: 'sv7' },
+              { name: 'Twilight Masquerade', series: 'Scarlet & Violet', emoji: '🎭', id: 'sv6' },
             ].map((set, i) => (
-              <div key={i} className="dash-trending-set" onClick={() => navigate('/sets')}>
+              <div key={i} className="dash-trending-set" onClick={() => navigate(`/sets?set=${set.id}`)}>
                 <div className="dash-trending-set-emoji">{set.emoji}</div>
                 <div>
                   <div className="dash-trending-set-name">{set.name}</div>
