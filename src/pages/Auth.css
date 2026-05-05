@@ -1,17 +1,31 @@
-.auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--bg); position: relative; overflow: hidden; padding: 20px; }
-.auth-bg { position: absolute; inset: 0; pointer-events: none; }
-.auth-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(108,92,231,0.08) 0%, transparent 70%); border-radius: 50%; }
-.auth-box { position: relative; background: var(--bg-card); border: 1px solid var(--border-light); padding: 48px; width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 8px; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
-.auth-logo { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 16px; }
-.auth-logo span { background: var(--prism); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.auth-title { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
-.auth-sub { font-size: 15px; color: var(--text-secondary); margin-bottom: 16px; }
-.discord-btn { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 14px; background: #5865F2; color: #fff; border: none; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin: 8px 0; border-radius: 14px; font-family: 'Syne', sans-serif; }
-.discord-btn:hover { background: #4752C4; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(88,101,242,0.3); }
-.auth-divider { display: flex; align-items: center; gap: 16px; margin: 8px 0; }
+.auth-page { min-height: 100vh; display: flex; background: var(--bg); }
+.auth-left { flex: 1; background: var(--accent); display: flex; flex-direction: column; justify-content: center; padding: 60px; position: relative; overflow: hidden; }
+.auth-left-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #5b5bd6 0%, #4040c0 100%); }
+.auth-left-content { position: relative; z-index: 1; }
+.auth-left-logo { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; margin-bottom: 56px; }
+.auth-left-title { font-size: 36px; font-weight: 800; color: #fff; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 16px; }
+.auth-left-sub { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; max-width: 360px; }
+.auth-left-features { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
+.auth-left-feature { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 500; }
+.auth-left-feature-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+
+.auth-right { width: 480px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 48px; border-left: 1px solid var(--border); }
+.auth-box { width: 100%; max-width: 360px; }
+.auth-logo { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 32px; letter-spacing: -0.02em; }
+.auth-logo span { color: var(--accent); }
+.auth-title { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
+.auth-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 24px; }
+.discord-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 11px; background: #5865F2; color: #fff; border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s; margin: 8px 0; border-radius: 10px; font-family: inherit; }
+.discord-btn:hover { background: #4752C4; box-shadow: 0 4px 12px rgba(88,101,242,0.3); }
+.auth-divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
 .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-.auth-divider span { font-size: 13px; color: var(--text-muted); }
-.auth-error { background: rgba(214,48,49,0.08); border: 1px solid rgba(214,48,49,0.2); color: var(--red); padding: 12px 16px; font-size: 14px; margin-top: 12px; border-radius: 12px; }
-.auth-message { background: var(--accent-dim); border: 1px solid var(--accent-mid); color: var(--accent); padding: 12px 16px; font-size: 14px; margin-top: 12px; border-radius: 12px; }
-.auth-switch { text-align: center; font-size: 14px; color: var(--text-secondary); margin-top: 8px; }
-.auth-switch button { background: none; border: none; color: var(--accent); font-weight: 700; cursor: pointer; font-size: 14px; padding: 0; }
+.auth-divider span { font-size: 12px; color: var(--text-muted); }
+.auth-error { background: var(--red-bg); border: 1px solid rgba(220,38,38,0.15); color: var(--red); padding: 10px 14px; font-size: 13px; margin-top: 10px; border-radius: 9px; }
+.auth-message { background: var(--accent-light); border: 1px solid var(--accent-mid); color: var(--accent); padding: 10px 14px; font-size: 13px; margin-top: 10px; border-radius: 9px; }
+.auth-switch { text-align: center; font-size: 13px; color: var(--text-secondary); margin-top: 16px; }
+.auth-switch button { background: none; border: none; color: var(--accent); font-weight: 600; cursor: pointer; font-size: 13px; padding: 0; }
+
+@media (max-width: 768px) {
+  .auth-left { display: none; }
+  .auth-right { width: 100%; border-left: none; }
+}
