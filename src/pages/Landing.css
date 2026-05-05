@@ -385,3 +385,39 @@
   .final-cta-inner { padding: 40px 24px; }
   .hero-title { font-size: 36px; }
 }
+
+/* ===== MOBILE LANDING ===== */
+@media (max-width: 768px) {
+  .nav-inner { padding: 0 16px; gap: 12px; }
+  .nav-links { display: none; }
+  .nav-actions .btn-ghost { display: none; }
+
+  .hero { padding: 80px 16px 0; }
+  .hero-title { font-size: 32px; letter-spacing: -0.03em; }
+  .hero-sub { font-size: 15px; }
+  .hero-actions { flex-direction: column; }
+  .hero-cta, .hero-secondary { width: 100%; justify-content: center; text-align: center; }
+  .hero-proof { gap: 16px; flex-wrap: wrap; }
+  .hero-screenshot { border-radius: 14px 14px 0 0; }
+  .screenshot-sidebar { display: none; }
+  .screenshot-body { grid-template-columns: 1fr; }
+
+  .stats-bar-inner { flex-wrap: wrap; }
+  .stat-bar-item { min-width: 50%; border-bottom: 1px solid var(--border); }
+  .stat-bar-item:nth-child(odd) { border-right: 1px solid var(--border); }
+  .stat-bar-item:last-child { border-bottom: none; }
+
+  .section-inner { padding: 56px 16px; }
+  .steps-grid { grid-template-columns: 1fr; gap: 10px; }
+  .features-grid { grid-template-columns: 1fr; gap: 10px; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 12px; }
+
+  .final-cta { padding: 24px 16px 48px; }
+  .final-cta-inner { flex-direction: column; padding: 32px 24px; gap: 24px; border-radius: 16px; }
+  .final-cta-actions { flex-direction: column; width: 100%; }
+  .cta-btn-white, .cta-btn-outline { width: 100%; text-align: center; }
+
+  .footer { padding: 28px 16px 20px; }
+  .footer-inner { flex-direction: column; gap: 16px; }
+  .footer-links { flex-wrap: wrap; gap: 12px; }
+}

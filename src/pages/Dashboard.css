@@ -39,3 +39,14 @@
   .dash-stats { grid-template-columns: 1fr 1fr; }
   .dash-actions { grid-template-columns: 1fr 1fr; }
 }
+
+@media (max-width: 768px) {
+  .dash-main { margin-left: 0 !important; padding: 72px 16px 24px; }
+  .dash-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .dash-actions { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .dash-header { padding-top: 8px; }
+  .dash-title { font-size: 20px; }
+  .dash-stat-value { font-size: 22px; }
+  .dash-list-item { flex-wrap: wrap; gap: 8px; }
+  .dash-list-meta { display: none; }
+}

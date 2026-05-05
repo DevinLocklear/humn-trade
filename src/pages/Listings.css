@@ -28,3 +28,13 @@
   .listings-main { margin-left: 0; padding: 64px 16px 20px; }
   .listings-grid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 768px) {
+  .listings-main { margin-left: 0 !important; padding: 72px 16px 24px; }
+  .listings-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .listings-header .btn-primary { width: 100%; justify-content: center; }
+  .listings-title { font-size: 20px; }
+  .listings-grid { grid-template-columns: 1fr; }
+  .listings-filters { overflow-x: auto; padding-bottom: 4px; flex-wrap: nowrap; }
+  .filter-btn { white-space: nowrap; flex-shrink: 0; }
+}

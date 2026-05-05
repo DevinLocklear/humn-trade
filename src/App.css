@@ -141,3 +141,37 @@ select.field-input { appearance: none; background-image: url("data:image/svg+xml
 .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border); }
 .modal-header h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
 .modal-close { background: var(--bg-secondary); border: none; color: var(--text-secondary); font-size: 14px; cursor: pointer; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; transition: all 0.1s; }
+.modal-close:hover { background: var(--bg-tertiary); color: var(--text); }
+.modal-form { padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; }
+
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-close { display: flex; }
+  .sidebar-overlay { display: block; }
+  .hamburger { display: flex; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ===== GLOBAL MOBILE FIXES ===== */
+@media (max-width: 768px) {
+  /* Sidebar always hidden on mobile until opened */
+  .sidebar { transform: translateX(-100%); width: 260px; }
+  .sidebar.open { transform: translateX(0); box-shadow: var(--shadow-xl); }
+  .sidebar-close { display: flex !important; align-items: center; justify-content: center; }
+  .sidebar-overlay { display: block !important; }
+  .hamburger { display: flex !important; }
+
+  /* Modal full screen on mobile */
+  .modal { border-radius: 16px 16px 0 0; max-height: 95vh; position: fixed; bottom: 0; left: 0; right: 0; width: 100%; max-width: 100%; }
+  .modal-overlay { align-items: flex-end; padding: 0; }
+
+  /* Form rows stack */
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* Buttons full width where needed */
+  .modal-actions { flex-direction: column-reverse; }
+  .modal-actions button { width: 100%; justify-content: center; }
+}
