@@ -39,3 +39,36 @@
   .trade-actions { flex-direction: column; }
   .trade-actions button { width: 100%; justify-content: center; }
 }
+
+/* Offer cards */
+.offer-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow-sm); transition: border-color 0.1s; }
+.offer-card:hover { border-color: var(--border-strong); }
+
+.offer-card-header { display: flex; align-items: center; justify-content: space-between; }
+.offer-from { display: flex; align-items: center; gap: 10px; }
+.offer-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--accent-mid); }
+.offer-avatar-init { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; }
+.offer-from-name { font-size: 14px; font-weight: 700; color: var(--accent); cursor: pointer; }
+.offer-from-name:hover { text-decoration: underline; }
+.offer-time { font-size: 12px; color: var(--text-muted); }
+.offer-on { font-size: 14px; color: var(--text-secondary); }
+.offer-on strong { color: var(--text); }
+
+.offer-details { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.offer-item { display: flex; flex-direction: column; gap: 3px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; flex: 1; min-width: 120px; }
+.offer-item-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.offer-item-name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+.offer-item-val { font-size: 16px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+.offer-arrow { font-size: 18px; color: var(--text-muted); flex-shrink: 0; }
+
+.offer-message { font-size: 13px; color: var(--text-secondary); font-style: italic; background: var(--bg-secondary); padding: 10px 14px; border-radius: 8px; border-left: 3px solid var(--border-strong); }
+
+.offer-counter { background: var(--orange-bg); border: 1px solid rgba(194,65,12,0.15); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.offer-counter-label { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.04em; }
+.offer-counter-message { font-size: 13px; color: var(--text); }
+.offer-counter-val { font-size: 13px; font-weight: 700; color: var(--orange); }
+
+.offer-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.offer-time-bottom { font-size: 12px; color: var(--text-muted); }
+
+.tab-badge { background: var(--accent); color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 10px; font-weight: 700; }

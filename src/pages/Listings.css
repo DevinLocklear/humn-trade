@@ -52,3 +52,33 @@
 .offer-card-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
 .offer-set { font-size: 12px; color: var(--text-secondary); }
 .offer-note { font-size: 12px; color: var(--text-muted); background: var(--bg-secondary); padding: 10px 14px; border-radius: 8px; line-height: 1.5; }
+
+/* Tabs */
+.listings-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); }
+.listings-tab { background: none; border: none; border-bottom: 2px solid transparent; padding: 12px 20px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; font-family: inherit; display: flex; align-items: center; gap: 8px; margin-bottom: -1px; }
+.listings-tab:hover { color: var(--text); }
+.listings-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-count { background: var(--bg-tertiary); color: var(--text-muted); font-size: 11px; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
+.listings-tab.active .tab-count { background: var(--accent-light); color: var(--accent); }
+
+.tab-description { font-size: 13px; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+
+/* Not accepting */
+.listing-card.not-accepting { opacity: 0.6; }
+
+/* Accepting toggle in form */
+.accepting-toggle { display: flex; align-items: center; gap: 12px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 14px; cursor: pointer; transition: border-color 0.15s; user-select: none; }
+.accepting-toggle:hover { border-color: var(--border-strong); }
+.toggle-switch-sm { width: 36px; height: 20px; background: var(--border-strong); border-radius: 10px; position: relative; transition: background 0.2s; flex-shrink: 0; }
+.toggle-switch-sm.on { background: var(--accent); }
+.toggle-knob-sm { position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: #fff; border-radius: 50%; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+.toggle-switch-sm.on .toggle-knob-sm { transform: translateX(16px); }
+
+/* Create type toggle */
+.create-type-toggle { display: flex; gap: 2px; padding: 0 24px; margin-top: -4px; border-bottom: 1px solid var(--border); }
+.create-type-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 12px 16px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--text-secondary); transition: all 0.15s; font-family: inherit; margin-bottom: -1px; }
+.create-type-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.create-type-desc { font-size: 13px; color: var(--text-secondary); padding: 10px 24px 0; }
+
+/* No inventory */
+.offer-no-inventory { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; font-size: 13px; color: var(--text-secondary); }
