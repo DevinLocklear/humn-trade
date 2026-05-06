@@ -35,7 +35,6 @@ export default function Trades({ session }) {
   async function respondToOffer(offer, response) {
     await supabase.from('offers').update({ status: response }).eq('id', offer.id);
     if (response === 'accepted') {
-      // Create a trade
       await supabase.from('trades').insert({
         initiator_id: offer.from_user_id,
         receiver_id: offer.to_user_id,
@@ -43,6 +42,8 @@ export default function Trades({ session }) {
         receiver_listing_id: offer.listing_id,
         trade_value: offer.listing?.estimated_value || null,
         status: 'active',
+        initiator_item: offer.offer_item?.item_name || null,
+        receiver_item: offer.listing?.item_name || null,
       });
     }
     fetchAll();
@@ -237,7 +238,7 @@ export default function Trades({ session }) {
                     const partner = isInitiator ? trade.receiver : trade.initiator;
                     const myConfirmed = isInitiator ? trade.initiator_confirmed : trade.receiver_confirmed;
                     return (
-                      <div key={trade.id} className="trade-card">
+                      <div key={trade.id} className="trade-card" onClick={() => navigate(`/trade/${trade.id}`)} style={{ cursor: 'pointer' }}>
                         <div className="trade-card-header">
                           <div className="trade-id">Trade #{trade.id.slice(0, 8)}</div>
                           <div className={tradeStatusColor(trade.status)}>{trade.status.toUpperCase()}</div>
@@ -252,11 +253,11 @@ export default function Trades({ session }) {
                           <div className={`confirm-dot ${trade.initiator_confirmed ? 'confirmed' : ''}`}>Initiator {trade.initiator_confirmed ? '✓' : '○'}</div>
                           <div className={`confirm-dot ${trade.receiver_confirmed ? 'confirmed' : ''}`}>Receiver {trade.receiver_confirmed ? '✓' : '○'}</div>
                         </div>
-                        {trade.status === 'active' && !myConfirmed && (
-                          <div className="trade-actions">
-                            <button className="btn-primary" onClick={() => confirmTrade(trade)}>Confirm Receipt</button>
-                          </div>
-                        )}
+                        <div className="trade-actions">
+                          <button className="btn-primary" onClick={(e) => { e.stopPropagation(); navigate(`/trade/${trade.id}`); }} style={{ fontSize: 13, padding: '8px 16px' }}>
+                            Open Trade Room →
+                          </button>
+                        </div>
                       </div>
                     );
                   })}
