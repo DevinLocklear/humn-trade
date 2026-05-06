@@ -35,19 +35,22 @@ export default function Trades({ session }) {
   async function respondToOffer(offer, response) {
     await supabase.from('offers').update({ status: response }).eq('id', offer.id);
     if (response === 'accepted') {
-      const { data } = await supabase.from('trades').insert({
+      const { data, error } = await supabase.from('trades').insert({
         initiator_id: offer.from_user_id,
         receiver_id: offer.to_user_id,
-        initiator_listing_id: offer.offer_listing_id,
-        receiver_listing_id: offer.listing_id,
+        initiator_listing_id: offer.offer_listing_id || null,
+        receiver_listing_id: offer.listing_id || null,
         trade_value: offer.listing?.estimated_value || null,
         status: 'active',
-        initiator_item: offer.offer_item?.item_name || null,
-        receiver_item: offer.listing?.item_name || null,
-      }).select('id').single();
-      if (data?.id) {
-        navigate(`/trade/${data.id}`);
+        initiator_item: offer.offer_item?.item_name || 'Unknown item',
+        receiver_item: offer.listing?.item_name || 'Unknown item',
+      }).select();
+      if (!error && data && data[0]?.id) {
+        navigate(`/trade/${data[0].id}`);
         return;
+      } else {
+        console.error('Trade creation error:', error);
+        alert('Trade created. Check Active Trades tab.');
       }
     }
     fetchAll();
