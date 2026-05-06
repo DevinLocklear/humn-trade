@@ -61,15 +61,6 @@ export default function Trades({ session }) {
     fetchAll();
   }
 
-  async function confirmTrade(trade) {
-    const isInitiator = trade.initiator_id === session.user.id;
-    const update = isInitiator ? { initiator_confirmed: true } : { receiver_confirmed: true };
-    await supabase.from('trades').update(update).eq('id', trade.id);
-    if ((isInitiator && trade.receiver_confirmed) || (!isInitiator && trade.initiator_confirmed)) {
-      await supabase.from('trades').update({ status: 'completed', completed_at: new Date().toISOString() }).eq('id', trade.id);
-    }
-    fetchAll();
-  }
 
   function timeAgo(date) {
     const s = Math.floor((new Date() - new Date(date)) / 1000);
@@ -236,8 +227,7 @@ export default function Trades({ session }) {
                   {trades.map(trade => {
                     const isInitiator = trade.initiator_id === session.user.id;
                     const partner = isInitiator ? trade.receiver : trade.initiator;
-                    const myConfirmed = isInitiator ? trade.initiator_confirmed : trade.receiver_confirmed;
-                    return (
+                                    return (
                       <div key={trade.id} className="trade-card" onClick={() => navigate(`/trade/${trade.id}`)} style={{ cursor: 'pointer' }}>
                         <div className="trade-card-header">
                           <div className="trade-id">Trade #{trade.id.slice(0, 8)}</div>
