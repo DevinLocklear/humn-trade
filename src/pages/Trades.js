@@ -35,7 +35,7 @@ export default function Trades({ session }) {
   async function respondToOffer(offer, response) {
     await supabase.from('offers').update({ status: response }).eq('id', offer.id);
     if (response === 'accepted') {
-      await supabase.from('trades').insert({
+      const { data } = await supabase.from('trades').insert({
         initiator_id: offer.from_user_id,
         receiver_id: offer.to_user_id,
         initiator_listing_id: offer.offer_listing_id,
@@ -44,7 +44,11 @@ export default function Trades({ session }) {
         status: 'active',
         initiator_item: offer.offer_item?.item_name || null,
         receiver_item: offer.listing?.item_name || null,
-      });
+      }).select('id').single();
+      if (data?.id) {
+        navigate(`/trade/${data.id}`);
+        return;
+      }
     }
     fetchAll();
   }
