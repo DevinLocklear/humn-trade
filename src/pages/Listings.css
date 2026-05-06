@@ -82,3 +82,20 @@
 
 /* No inventory */
 .offer-no-inventory { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; font-size: 13px; color: var(--text-secondary); }
+
+/* Offer exchange UI */
+.offer-exchange-row { display: flex; align-items: flex-start; gap: 12px; }
+.offer-exchange-side { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.offer-exchange-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.offer-exchange-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+.offer-exchange-name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+.offer-exchange-set { font-size: 12px; color: var(--text-secondary); }
+.offer-exchange-val { font-size: 18px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; margin-top: 2px; }
+.offer-exchange-arrow { font-size: 20px; color: var(--text-muted); flex-shrink: 0; padding-top: 28px; }
+.offer-exchange-select { font-size: 13px; }
+
+/* Value match */
+.value-match { font-size: 13px; font-weight: 600; padding: 10px 14px; border-radius: 9px; }
+.value-match.match { background: var(--green-bg); color: var(--green); border: 1px solid rgba(24,121,78,0.15); }
+.value-match.over { background: var(--accent-light); color: var(--accent); border: 1px solid var(--accent-mid); }
+.value-match.under { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(194,65,12,0.15); }

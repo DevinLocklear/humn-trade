@@ -241,28 +241,63 @@ export default function Listings({ session }) {
                 <button className="modal-close" onClick={() => setOfferModal(null)}>✕</button>
               </div>
               <form onSubmit={sendOffer} className="modal-form">
-                {myInventory.length > 0 ? (
-                  <div className="field">
-                    <label className="field-label">Offer from your inventory</label>
-                    <select className="field-input" value={offerForm.inventory_id} onChange={e => setOfferForm(f => ({ ...f, inventory_id: e.target.value }))}>
-                      <option value="">— Select an item to offer —</option>
-                      {myInventory.map(l => (<option key={l.id} value={l.id}>{l.item_name}{l.estimated_value ? ` ($${l.estimated_value})` : ''}{l.set_name ? ` · ${l.set_name}` : ''}</option>))}
-                    </select>
+                {/* Exchange visualization */}
+                <div className="offer-exchange-row">
+                  <div className="offer-exchange-side">
+                    <div className="offer-exchange-label">They want</div>
+                    <div className="offer-exchange-card">
+                      <div className="offer-exchange-name">{offerModal.item_name}</div>
+                      {offerModal.set_name && <div className="offer-exchange-set">{offerModal.set_name}</div>}
+                      {offerModal.estimated_value && <div className="offer-exchange-val">${offerModal.estimated_value}</div>}
+                    </div>
                   </div>
-                ) : (
-                  <div className="offer-no-inventory">
-                    <p>You have no inventory items yet.</p>
-                    <button type="button" className="btn-ghost" style={{ fontSize: 13, marginTop: 8 }} onClick={() => { setOfferModal(null); setForm(f => ({...f, type: 'have'})); setShowCreate(true); }}>+ Add to Inventory First</button>
+                  <div className="offer-exchange-arrow">⇄</div>
+                  <div className="offer-exchange-side">
+                    <div className="offer-exchange-label">You offer</div>
+                    {myInventory.length > 0 ? (
+                      <select className="field-input offer-exchange-select" value={offerForm.inventory_id} onChange={e => setOfferForm(f => ({ ...f, inventory_id: e.target.value }))}>
+                        <option value="">— Pick from your inventory —</option>
+                        {myInventory.map(l => {
+                          const val = l.estimated_value;
+                          const targetVal = offerModal.estimated_value;
+                          const diff = targetVal && val ? (val - targetVal) : null;
+                          const match = diff !== null ? (Math.abs(diff) <= targetVal * 0.15 ? ' ✓' : diff > 0 ? ` (+$${diff.toFixed(0)})` : ` (-$${Math.abs(diff).toFixed(0)})`) : '';
+                          return <option key={l.id} value={l.id}>{l.item_name}{val ? ` · $${val}` : ''}{match}</option>;
+                        })}
+                      </select>
+                    ) : (
+                      <div className="offer-no-inventory">
+                        <p>No inventory items yet</p>
+                        <button type="button" className="btn-ghost" style={{ fontSize: 12, marginTop: 8, padding: '6px 12px' }} onClick={() => { setOfferModal(null); setForm(f => ({...f, type: 'have'})); setShowCreate(true); }}>+ Add to Inventory</button>
+                      </div>
+                    )}
                   </div>
-                )}
-                <div className="field">
-                  <label className="field-label">Message</label>
-                  <textarea className="field-input" rows={3} placeholder="Describe your offer or ask a question..." value={offerForm.message} onChange={e => setOfferForm(f => ({ ...f, message: e.target.value }))} style={{ resize: 'vertical' }} />
                 </div>
-                <div className="offer-note">No fees until a trade is agreed. The other party can accept, decline, or counter.</div>
+
+                {/* Value match indicator */}
+                {offerForm.inventory_id && offerModal.estimated_value && (() => {
+                  const selected = myInventory.find(l => l.id === offerForm.inventory_id);
+                  if (!selected?.estimated_value) return null;
+                  const diff = selected.estimated_value - offerModal.estimated_value;
+                  const pct = Math.abs(diff / offerModal.estimated_value * 100).toFixed(0);
+                  const isClose = Math.abs(diff) <= offerModal.estimated_value * 0.15;
+                  return (
+                    <div className={`value-match ${isClose ? 'match' : diff > 0 ? 'over' : 'under'}`}>
+                      {isClose ? '✓ Great value match' : diff > 0 ? `Your offer is $${diff.toFixed(0)} (${pct}%) over their ask` : `Your offer is $${Math.abs(diff).toFixed(0)} (${pct}%) under their ask — consider adding a note`}
+                    </div>
+                  );
+                })()}
+
+                <div className="field">
+                  <label className="field-label">Message <span style={{ fontWeight: 400, textTransform: 'none', fontSize: 12, color: 'var(--text-muted)' }}>optional</span></label>
+                  <textarea className="field-input" rows={3} placeholder="Add context, ask a question, or propose terms..." value={offerForm.message} onChange={e => setOfferForm(f => ({ ...f, message: e.target.value }))} style={{ resize: 'vertical' }} />
+                </div>
+
+                <div className="offer-note">No fees until a trade is agreed. They can accept, decline, or counter your offer.</div>
+
                 <div className="modal-actions">
                   <button type="button" className="btn-ghost" onClick={() => setOfferModal(null)}>Cancel</button>
-                  <button type="submit" className="btn-primary" disabled={sendingOffer || (!offerForm.inventory_id && !offerForm.message)}>
+                  <button type="submit" className="btn-primary" disabled={sendingOffer || !offerForm.inventory_id}>
                     {sendingOffer ? 'Sending...' : 'Send Offer →'}
                   </button>
                 </div>
